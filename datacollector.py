@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import moviepy.editor as mpy
 import os
+import sys
 
 #LOADING THE CLASSIFIERS
 face_cascade = cv2.CascadeClassifier('haarcascade/haarcascade_frontalface_default.xml')
@@ -43,6 +44,7 @@ def error_fn(tup1, tup2):
 def process_video(filename, epsilon):
 
     clip = mpy.VideoFileClip(filename)
+    newfilename = os.path.split(filename)[1]
 
     continuous = False
     prev = (-1, -1, -1, -1)
@@ -59,7 +61,7 @@ def process_video(filename, epsilon):
                 #end continuous streak, export subclip
                 continuous = False
                 newclip = clip.subclip(prevti, ti)
-                newclip.write_videofile("test4\\" + str(prevti) + " - " + str(ti) + filename + ".mp4")
+                newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
             else:
                 do_nothing()
         else:
@@ -82,13 +84,13 @@ def process_video(filename, epsilon):
                 else:
                     continuous = True #still True because have new face
                     newclip = clip.subclip(prevti, ti)
-                    newclip.write_videofile("test4\\" + str(prevti) + " - " + str(ti) + filename + ".mp4")
+                    newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
                     prev = faces[0]
                     prevti = ti
         ti += 0.1
 
     if continuous == True:
         newclip = clip.subclip(prevti, clip.duration)
-        newclip.write_videofile("test4\\" + str(prevti) + " - " + str(clip.duration) + filename + ".mp4")
+        newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
 
 
