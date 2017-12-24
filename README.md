@@ -1,3 +1,4 @@
+#FacialDataCollector
 This application focuses on extracting segments of video with facial recognition and cutting them to form a database of videos.
 
 
@@ -7,7 +8,24 @@ GUI : sdf
 Error Algorithms: for calculating continuous frames
 
 
-A brief discussion on analysis of error:
+#####Dependencies:
+To use the application, install Python 2.7
+This project depends on a few python libraries:
+-numpy
+-matplotlib
+-imageio
+-ffprobe
+-moviepy
+-PIL (installed together with moviepy)
+-cv2
+
+To install the first five libraries, run the following:
+pip install numpy matplotlib imageio ffprobe moviepy
+
+To install cv2, please follow the instructions [here](http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_setup/py_setup_in_windows/py_setup_in_windows.html).
+
+
+#####A brief discussion on analysis of error:
 Error
 Time step allowances 0.1 0.2 0.3
 
@@ -19,10 +37,6 @@ Pictures of finished programs.
 Performance indicator
 How much time it takes to process a how many second video
 
-Dependencies:
-pip install _____
-pip install _____
-CV2
 
 
 Sample AI
