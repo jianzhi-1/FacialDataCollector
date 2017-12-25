@@ -120,7 +120,7 @@ class Application(tk.Frame):
 
     def process(self):
         #EPSILON usually set to 25000
-        datacollector.process_video(self.full_vid_name, 25000)
+        datacollector.process_video(self.full_vid_name, 75000)
 
 root = tk.Tk()
 app = Application(root)

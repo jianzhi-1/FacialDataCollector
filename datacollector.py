@@ -9,11 +9,7 @@ import pixelerror
 face_cascade = cv2.CascadeClassifier('haarcascade/haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade/haarcascade_eye.xml')
 
-#DO_NOTHING: This function acts as a placeholder
-def do_nothing():
-    return
-
-#MAKR_FACE: This function marks out faces in image
+#MARK_FACE: This function marks out faces in image
 #Use this function to mark out in red the face rectangles
 def mark_face(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -56,6 +52,7 @@ def process_video(filename, epsilon):
 
     prevti = -1
     ti = 0
+    previmg = clip.get_frame(0.0)
     while (ti < clip.duration):
         
         img = clip.get_frame(ti)
@@ -65,45 +62,46 @@ def process_video(filename, epsilon):
         if (len(faces) == 0):
             #empties prev
             prev = []
+            previmg = img
             if (continuous == True):
                 #end continuous streak, export subclip
                 continuous = False
                 newclip = clip.subclip(prevti, ti)
                 newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
             else:
-                do_nothing()
+                pass
         else:
             if (continuous == False):
                 prev = faces
                 prevti = ti
+                previmg = img
                 continuous = True
             else:
                 
                 #check for continuity
-                isit = False
+                inf = 1000000000
+                minfaceerror = inf
                 for (x, y, w, h) in faces:
-                    if (isit == True):
-                        break
                     for (x1, y1, w1, h1) in prev:
-                        if (face_error_fn((x1, y1, w1, h1), (x, y, w, h)) > epsilon):
-                            do_nothing()
-                        else:
-                            isit = True
-                            break
+                        minfaceerror = min(minfaceerror, face_error_fn((x1, y1, w1, h1), (x, y, w, h)))
 
-                if (isit == True):
-                    do_nothing()
+                if (minfaceerror < inf and minfaceerror + pixelerror.pixel_error_fn(previmg, img) < epsilon):
+                    prev = faces
+                    previmg = img
+                    pass
                 else:
                     continuous = True #still True because have new face
                     newclip = clip.subclip(prevti, ti)
                     newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
                     prev = faces
+                    previmg = img
                     prevti = ti
         ti += 0.1
 
     if continuous == True:
         newclip = clip.subclip(prevti, clip.duration)
         newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
+    print("Done processing file")
 
 """
 filename = "0.45 - 0.56Despacito.mp4"
