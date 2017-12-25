@@ -8,7 +8,7 @@ GUI : sdf
 Error Algorithms: for calculating continuous frames
 
 
-##### Dependencies:
+#### Dependencies:
 To use the application, install Python 2.7
 This project depends on a few python libraries:
 - numpy
@@ -25,8 +25,15 @@ pip install numpy matplotlib imageio ffprobe moviepy
 To install cv2, please follow the instructions [here](http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_setup/py_setup_in_windows/py_setup_in_windows.html).
 
 
-##### A brief discussion on analysis of error:
-Error
+#### Error Function for Continuous Frames:
+FacialDataCollector uses two error values to judge continuity
+- Face Error
+The sum of squares of differences of rectangles marking out faces in adjacent frames.
+- Pixel Error
+The sum of the difference in pixels of adjacent frames.
+See Report_FINAL.pdf for more information.
+
+
 Time step allowances 0.1 0.2 0.3
 
 Error value plot a graph
