@@ -30,7 +30,7 @@ def mark_face(img):
 #ERROR_FN: This function calculates the error value between adjacent frames
 #PARAMETERS: TUP1, TUP2 tuples of length 4, defining rectangle of faces
 #returns the error function, sum of squares
-def error_fn(tup1, tup2):
+def face_error_fn(tup1, tup2):
     total = 0
     total += (tup1[0] - tup2[0])**2
     total += (tup1[1] - tup2[1])**2
@@ -84,7 +84,7 @@ def process_video(filename, epsilon):
                     if (isit == True):
                         break
                     for (x1, y1, w1, h1) in prev:
-                        if (error_fn((x1, y1, w1, h1), (x, y, w, h)) > epsilon):
+                        if (face_error_fn((x1, y1, w1, h1), (x, y, w, h)) > epsilon):
                             do_nothing()
                         else:
                             isit = True
