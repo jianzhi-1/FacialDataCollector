@@ -38,6 +38,7 @@ def error_fn(tup1, tup2):
     total += (tup1[1] + tup1[3] - tup2[1] - tup2[3])**2
     return total
 
+
 #PROCESS_VIDEO: This function is called by gui.py to process video
 #PARAMETERS: FILENAME - filename of file
 #            EPSILON - error margin, typically set to 25000
@@ -47,7 +48,11 @@ def process_video(filename, epsilon):
     newfilename = os.path.split(filename)[1]
 
     continuous = False
-    prev = (-1, -1, -1, -1)
+    #prev = (-1, -1, -1, -1)
+    
+    #PREV stores all tuples of previous faces
+    prev = []
+
     prevti = -1
     ti = 0
     while (ti < clip.duration):
@@ -57,6 +62,8 @@ def process_video(filename, epsilon):
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
         if (len(faces) == 0):
+            #empties prev
+            prev = []
             if (continuous == True):
                 #end continuous streak, export subclip
                 continuous = False
@@ -66,7 +73,7 @@ def process_video(filename, epsilon):
                 do_nothing()
         else:
             if (continuous == False):
-                prev = faces[0]
+                prev = faces
                 prevti = ti
                 continuous = True
             else:
@@ -74,18 +81,22 @@ def process_video(filename, epsilon):
                 #check for continuity
                 isit = False
                 for (x, y, w, h) in faces:
-                    if error_fn(prev, (x, y, w, h)) > epsilon:
-                        do_nothing()
-                    else:
-                        isit = True
+                    if (isit == True):
                         break
+                    for (x1, y1, w1, h1) in prev:
+                        if (error_fn((x1, y1, w1, h1), (x, y, w, h)) > epsilon):
+                            do_nothing()
+                        else:
+                            isit = True
+                            break
+
                 if (isit == True):
                     do_nothing()
                 else:
                     continuous = True #still True because have new face
                     newclip = clip.subclip(prevti, ti)
                     newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
-                    prev = faces[0]
+                    prev = faces
                     prevti = ti
         ti += 0.1
 
