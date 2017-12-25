@@ -49,8 +49,8 @@ filename = "0.45 - 0.56Despacito.mp4"
 clip = mpy.VideoFileClip(filename)
 
 
-tt = 0.3
-tt2 = 0.3
+tt = 3.0
+tt2 = 3.1
 
 imgxx = clip.get_frame(tt)
 imgyy = clip.get_frame(tt2)

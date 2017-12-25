@@ -3,6 +3,7 @@ import numpy as np
 import moviepy.editor as mpy
 import os
 import sys
+import pixelerror
 
 #LOADING THE CLASSIFIERS
 face_cascade = cv2.CascadeClassifier('haarcascade/haarcascade_frontalface_default.xml')
@@ -104,4 +105,26 @@ def process_video(filename, epsilon):
         newclip = clip.subclip(prevti, clip.duration)
         newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
 
+"""
+filename = "0.45 - 0.56Despacito.mp4"
+clip = mpy.VideoFileClip(filename)
 
+
+tt = 3.0
+tt2 = 3.1
+
+imgxx = clip.get_frame(tt)
+grayx = cv2.cvtColor(imgxx, cv2.COLOR_BGR2GRAY)
+facesx = face_cascade.detectMultiScale(grayx, 1.3, 5)
+imgyy = clip.get_frame(tt2)
+print(pixelerror.comparesize(imgxx, imgyy))
+grayy = cv2.cvtColor(imgyy, cv2.COLOR_BGR2GRAY)
+facesy = face_cascade.detectMultiScale(grayy, 1.3, 5)
+print(len(facesx))
+print(len(facesy))
+for (x, y, w, h) in facesx:
+    for (x1, y1, w1, h1) in facesy:
+        print("Face error is " + str(face_error_fn((x1, y1, w1, h1), (x, y, w, h))/4))
+#print(imgxx)
+#print(imgyy)
+"""
