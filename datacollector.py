@@ -60,14 +60,37 @@ def process_video(filename, epsilon):
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
         if (len(faces) == 0):
-            #empties prev
-            prev = []
-            previmg = img
             if (continuous == True):
-                #end continuous streak, export subclip
-                continuous = False
-                newclip = clip.subclip(prevti, ti)
-                newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
+                #check continuity
+                if (ti + 0.1 < clip.duration and ti + 0.2 < clip.duration and ti + 0.3 < clip.duration):
+                    img22 = clip.get_frame(ti + 0.1)
+                    gray22 = cv2.cvtColor(img22, cv2.COLOR_BGR2GRAY)
+                    faces22 = face_cascade.detectMultiScale(gray22, 1.3, 5)
+                    img33 = clip.get_frame(ti + 0.2)
+                    gray33 = cv2.cvtColor(img33, cv2.COLOR_BGR2GRAY)
+                    faces33 = face_cascade.detectMultiScale(gray33, 1.3, 5)
+                    img44 = clip.get_frame(ti + 0.3)
+                    gray44 = cv2.cvtColor(img44, cv2.COLOR_BGR2GRAY)
+                    faces44 = face_cascade.detectMultiScale(gray44, 1.3, 5)
+                    if (len(faces22) == 0 and len(faces33) == 0 and len(faces44) == 0):
+                        #empties prev
+                        prev = []
+                        previmg = img
+                        continuous = False
+                        newclip = clip.subclip(prevti, ti)
+                        newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
+                    else:
+                        #Put on hold first
+                        previmg = img
+                        pass
+                else:
+                    #end continuous streak, export subclip
+                    #empties prev
+                    prev = []
+                    previmg = img
+                    continuous = False
+                    newclip = clip.subclip(prevti, ti)
+                    newclip.write_videofile("exported/" + str(prevti) + "-" + str(ti) + newfilename)
             else:
                 pass
         else:

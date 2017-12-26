@@ -22,8 +22,8 @@ def pixel_error_fn(imgx, imgy):
         return inf
     totalerror = 0
     r = 5
-    for i in range(0, w, max(1, w/100)):
-        for j in range(0, h, max(1, h/100)):
+    for i in range(0, w, max(1, w/33)):
+        for j in range(0, h, max(1, h/33)):
             pixelval = imgx[i,j]
             minerror = inf
             for k in range(i - r, i + r):
@@ -41,7 +41,7 @@ def pixel_error_fn(imgx, imgy):
                         #print(curerror)
                         minerror = min(curerror, minerror)
             totalerror = totalerror + minerror
-    return totalerror/((w/max(1, w/100))*(h/max(1,h/100)))
+    return totalerror/((w/max(1, w/33))*(h/max(1,h/33)))
 
 
 """
