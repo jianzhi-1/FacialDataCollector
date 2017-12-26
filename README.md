@@ -33,7 +33,7 @@ The sum of squares of differences of rectangles marking out faces in adjacent fr
 The sum of the difference in pixels of adjacent frames.
 See Report_FINAL.pdf for more information.
 
-Epsilon Ierror threshold) is determined based on the following graph, where the number of clips obtained is minimum.
+Epsilon (error threshold) is determined based on the following graph, where the number of clips obtained is minimum.
 
 ![Image of Error Threshold Graph](error_graph.png)
 
