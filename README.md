@@ -33,6 +33,13 @@ The sum of squares of differences of rectangles marking out faces in adjacent fr
 The sum of the difference in pixels of adjacent frames.
 See Report_FINAL.pdf for more information.
 
+Epsilon Ierror threshold) is determined based on the following graph, where the number of clips obtained is minimum.
+
+![Image of Error Threshold Graph](error_graph.png)
+
+For effective data collection, epsilon is set to be 60000.
+To set it to other value, change the datacollector.process_video() function.
+
 
 Time step allowances 0.1 0.2 0.3
 
