@@ -31,8 +31,8 @@ def getLength(filename):
 class Application(tk.Frame):
     def __init__(self, master = None):
         self.master = master
-        master.title = "MovieEmotions"
-        self.label = tk.Label(root, text = "Red Sun", bg = "red", fg = "white")
+        self.master.title = "FacialDataCollector"
+        self.label = tk.Label(root, text = "FacialDataCollector", bg = "red", fg = "white")
         self.label.pack(fill = tk.X)
 
         self.greet_button = tk.Button(master, text = "Greet", command = self.greet)
@@ -57,7 +57,8 @@ class Application(tk.Frame):
         
         self.select_vid = tk.Button(master, text = "Browse Video", command = self.browse_vid)
         self.select_vid.pack()
-
+        
+        """
         self.aud_name = "No audio file attached"
         self.full_aud_name = ""
 
@@ -66,6 +67,7 @@ class Application(tk.Frame):
         
         self.select_aud = tk.Button(master, text = "Browse Audio", command = self.browse_aud)
         self.select_aud.pack()
+        """
 
         self.process_button = tk.Button(master, text = "Process Video", command = self.process)
         self.process_button.pack()
@@ -87,10 +89,14 @@ class Application(tk.Frame):
 
     def browse_vid(self):
         vidx = tkFileDialog.askopenfile()
-        self.vid_name = os.path.split(vidx.name)[1]
-        self.full_vid_name = vidx.name
-        self.vid_label.config(text = self.vid_name)
-        self.set_up_video()
+        try:
+            self.vid_name = os.path.split(vidx.name)[1]
+            self.full_vid_name = vidx.name
+            self.vid_label.config(text = self.vid_name)
+            self.set_up_video()
+        except:
+            print("No file selected.")
+            pass
 
     def browse_aud(self):
         audx = tkFileDialog.askopenfile()
