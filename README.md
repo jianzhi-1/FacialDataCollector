@@ -20,9 +20,9 @@ This project depends on a few python libraries:
 - cv2
 
 To install the first five libraries, run the following:
-'''
+```
 pip install numpy matplotlib imageio ffprobe moviepy
-'''
+```
 
 To install cv2, please follow the instructions [here](http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_setup/py_setup_in_windows/py_setup_in_windows.html).
 
