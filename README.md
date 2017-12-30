@@ -20,7 +20,9 @@ This project depends on a few python libraries:
 - cv2
 
 To install the first five libraries, run the following:
+'''
 pip install numpy matplotlib imageio ffprobe moviepy
+'''
 
 To install cv2, please follow the instructions [here](http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_setup/py_setup_in_windows/py_setup_in_windows.html).
 
@@ -39,25 +41,6 @@ Epsilon (error threshold) is determined based on the following graph, where the 
 
 For effective data collection, epsilon is set to be 60000.
 To set it to other value, change the datacollector.process_video() function.
-
-
-Time step allowances 0.1 0.2 0.3
-
-Error value plot a graph
-
-
-Pictures of finished programs.
-
-Performance indicator
-How much time it takes to process a how many second video
-
-
-
-Sample AI
-
-
-How to operate the thing
-video format accepted mp4
 
 ### Common Bugs and Fixes
 When running gui.py on Windows, the following Python error may occur:
@@ -82,5 +65,24 @@ except WindowsError:
 ```
 
 insert screenshots of project
+
+
+Time step allowances 0.1 0.2 0.3
+
+Error value plot a graph
+
+
+Pictures of finished programs.
+
+Performance indicator
+How much time it takes to process a how many second video
+
+
+
+Sample AI
+
+
+How to operate the thing
+video format accepted mp4
 
 
