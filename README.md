@@ -45,12 +45,15 @@ To set it to other value, change the datacollector.process_video() function.
 
 ### Performance of FacialDataCollector
 FacialDataCollector depends on the library MoviePy, so the speed of exporting clips is mainly limited by MoviePy.
+
 It takes around 1 day (24 hours) to process 2 hours of video.
 
 
 ### Using FacialDataCollector
 Using Python 2.7, run gui.py.
+
 Click 'Browse Video' to select a video (.mp4). The GUI also allows you to preview the video you have chosen.
+
 Click 'Process Video' to start processing the video. The resulting clips will be exported to the 'export' folder.
 
 ### Common Bugs and Fixes
