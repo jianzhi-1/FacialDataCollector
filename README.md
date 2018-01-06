@@ -42,6 +42,17 @@ Epsilon (error threshold) is determined based on the following graph, where the 
 For effective data collection, epsilon is set to be 60000.
 To set it to other value, change the datacollector.process_video() function.
 
+
+### Performance of FacialDataCollector
+FacialDataCollector depends on the library MoviePy, so the speed of exporting clips is mainly limited by MoviePy.
+It takes around 1 day (24 hours) to process 2 hours of video.
+
+
+### Using FacialDataCollector
+Using Python 2.7, run gui.py.
+Click 'Browse Video' to select a video (.mp4). The GUI also allows you to preview the video you have chosen.
+Click 'Process Video' to start processing the video. The resulting clips will be exported to the 'export' folder.
+
 ### Common Bugs and Fixes
 When running gui.py on Windows, the following Python error may occur:
 ```
@@ -64,25 +75,9 @@ except WindowsError:
     pass
 ```
 
+
 insert screenshots of project
-
-
-Time step allowances 0.1 0.2 0.3
-
-Error value plot a graph
-
-
 Pictures of finished programs.
 
-Performance indicator
-How much time it takes to process a how many second video
-
-
-
-Sample AI
-
-
-How to operate the thing
-video format accepted mp4
 
 
