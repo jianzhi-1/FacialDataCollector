@@ -78,10 +78,3 @@ try:
 except WindowsError:
     pass
 ```
-
-
-insert screenshots of project
-Pictures of finished programs.
-
-
-
