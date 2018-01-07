@@ -35,8 +35,8 @@ class Application(tk.Frame):
         self.label = tk.Label(root, text = "FacialDataCollector", bg = "red", fg = "white")
         self.label.pack(fill = tk.X)
 
-        self.greet_button = tk.Button(master, text = "Greet", command = self.greet)
-        self.greet_button.pack(fill = tk.X)
+        #self.greet_button = tk.Button(master, text = "Greet", command = self.greet)
+        #self.greet_button.pack(fill = tk.X)
 
         self.close_button = tk.Button(master, text = "Close", command = master.quit)
         self.close_button.pack()
@@ -84,8 +84,8 @@ class Application(tk.Frame):
         
 
     
-    def greet(self):
-        print("Greetings!")
+    #def greet(self):
+    #    print("Greetings!")
 
     def browse_vid(self):
         vidx = tkFileDialog.askopenfile()
