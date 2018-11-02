@@ -3,7 +3,7 @@ This application focuses on extracting segments of video with facial recognition
 
 
 
-Click [here](FacialDataCollector A Novel Heuristic Based Algorithm for Automated Video Segmentation.pdf) to view the report.
+Click [here](https://github.com/jianzhi-1/FacialDataCollector/blob/master/FacialDataCollector%20A%20Novel%20Heuristic%20Based%20Algorithm%20for%20Automated%20Video%20Segmentation.pdf) to view the report.
 
 
 ### Dependencies:
