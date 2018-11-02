@@ -3,9 +3,7 @@ This application focuses on extracting segments of video with facial recognition
 
 
 
-This application consists of:
-GUI : sdf
-Error Algorithms: for calculating continuous frames
+Click [here](FacialDataCollector A Novel Heuristic Based Algorithm for Automated Video Segmentation.pdf) to view the report.
 
 
 ### Dependencies:
